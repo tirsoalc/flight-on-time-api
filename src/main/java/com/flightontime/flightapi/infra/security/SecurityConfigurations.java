@@ -26,7 +26,7 @@ public class SecurityConfigurations {
     @Autowired
     private SecurityFilter securityFilter;
 
-    public static final String [] ENDPOINTS_POST_NO_AUTH = {"/login"};
+    public static final String [] ENDPOINTS_POST_NO_AUTH = {"/login", "/predict"};
     public static final String [] ENDPOINTS_GET_NO_AUTH = {"/", "/check/**", "/h2-console/**"};
     public static final String [] ENDPOINTS_SWAGGER = {"/v3/api-docs/**", "/swagger-ui.html", "/swagger-ui/**"};
     public static final String [] ENDPOINTS_ADMIN = {"/admin", "/usuarios/**"};
