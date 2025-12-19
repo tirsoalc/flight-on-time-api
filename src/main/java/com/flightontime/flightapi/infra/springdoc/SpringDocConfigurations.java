@@ -26,13 +26,13 @@ public class SpringDocConfigurations {
                                         .scheme("bearer")
                                         .bearerFormat("JWT")))
                         .info(new Info()
-                                .title("Forum Hub API")
+                                .title("Flight On Time - Java backend API")
                                 .version(version)
-                                .summary("Desafio proposto no programa ONE (Oracle Next Education). Uma parceria entre Alura Latam e Oracle. Grupo G8 (2025).")
-                                .description("Desenvolver em Java com Spring Boot uma API Rest para um fórum fictício. Deve implementar CRUD de tópicos, seja stateless e tenha controle o acesso via token JWT")
+                                .summary("summary: to do")
+                                .description("description: to do")
                                 .contact(new Contact()
                                         .name("Github")
-                                        .url("https://github.com/rrbotlab/challenge-java-forumhub-one-g8"))
+                                        .url("https://github.com/rrbotlab/flight-on-time-api"))
                         .license(new License()
                                 .name("MIT")));
     }
