@@ -13,8 +13,7 @@ public class FlightPredictionMapper {
                 flightRequest.companhia(),
                 flightRequest.origem(),
                 flightRequest.destino(),
-                flightRequest.dataPartida(),
-                flightRequest.distanciaKm()
+                flightRequest.dataPartida()
         );
         return apiRequest;
     }
@@ -22,18 +21,19 @@ public class FlightPredictionMapper {
     public static FlightPredictionResponse toFlightPredictionResponse(DataScienceApiResponse apiResponse) {
         FlightPredictionDetails flightPredictionDetails = null;
 
-        if (apiResponse.detalhes() != null) {
+        if (apiResponse.dados_utilizados() != null) {
             flightPredictionDetails = new FlightPredictionDetails(
-                    apiResponse.detalhes().is_feriado(),
-                    apiResponse.detalhes().distancia_km()
+                    apiResponse.dados_utilizados().distancia(),
+                    apiResponse.dados_utilizados().chuva(),
+                    apiResponse.dados_utilizados().vento(),
+                    apiResponse.dados_utilizados().fonte_clima()
             );
         }
 
         FlightPredictionResponse flightPredictionResponse = new FlightPredictionResponse(
                 apiResponse.previsao(),
                 apiResponse.probabilidade(),
-                apiResponse.nivel_risco(),
-                apiResponse.mensagem(),
+                apiResponse.cor(),
                 flightPredictionDetails
         );
         return flightPredictionResponse;

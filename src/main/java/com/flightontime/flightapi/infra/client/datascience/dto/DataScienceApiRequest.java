@@ -7,6 +7,5 @@ public record DataScienceApiRequest(
     String companhia,
     String origem,
     String destino,
-    @JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss") LocalDateTime data_partida,
-    Double distancia_km
+    @JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss") LocalDateTime data_partida
 ) {}

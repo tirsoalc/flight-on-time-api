@@ -10,7 +10,6 @@ public record FlightRequest(
         @NotBlank String companhia,
         @NotBlank String origem,
         @NotBlank String destino,
-        @JsonProperty("data_partida") @NotNull LocalDateTime dataPartida,
-        @JsonProperty("distancia_km") @NotNull Double distanciaKm
+        @JsonProperty("data_partida") @NotNull LocalDateTime dataPartida
 ) {
 }
