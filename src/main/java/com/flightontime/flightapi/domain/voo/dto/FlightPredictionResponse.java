@@ -1,9 +1,9 @@
 package com.flightontime.flightapi.domain.voo.dto;
 
-public record VooPrevisaoResposta(
+public record FlightPredictionResponse(
     String previsao,
     Double probabilidade,
     String nivelRisco,
     String mensagem,
-    DetalhesVooPrevisao detalhes
+    FlightPredictionDetails detalhes
 ){}

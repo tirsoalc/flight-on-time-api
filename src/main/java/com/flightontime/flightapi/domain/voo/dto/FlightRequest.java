@@ -6,7 +6,7 @@ import jakarta.validation.constraints.NotNull;
 
 import java.time.LocalDateTime;
 
-public record VooRequisicao(
+public record FlightRequest(
         @NotBlank String companhia,
         @NotBlank String origem,
         @NotBlank String destino,

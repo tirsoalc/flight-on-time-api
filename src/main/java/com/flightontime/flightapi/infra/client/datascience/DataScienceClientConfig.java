@@ -11,13 +11,13 @@ import org.springframework.web.service.invoker.HttpServiceProxyFactory;
 import java.util.Optional;
 
 @Configuration
-public class DataScienceClienteConfig {
+public class DataScienceClientConfig {
 
     @Value("${datascience.api.flightontime-url}")
     private String url;
 
     @Bean
-    public DataScienceClienteInterface dataScienceCliente(RestClient.Builder restClientBuilder) {
+    public DataScienceClientInterface dataScienceClient(RestClient.Builder restClientBuilder) {
         RestClient restClient = restClientBuilder
                 .baseUrl(url)
                 .defaultStatusHandler(HttpStatusCode::is4xxClientError,
@@ -25,7 +25,7 @@ public class DataScienceClienteConfig {
                 .build();
         RestClientAdapter adapter = RestClientAdapter.create(restClient);
         HttpServiceProxyFactory factory = HttpServiceProxyFactory.builderFor(adapter).build();
-        return factory.createClient(DataScienceClienteInterface.class);
+        return factory.createClient(DataScienceClientInterface.class);
     }
 
 }

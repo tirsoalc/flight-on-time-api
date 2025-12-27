@@ -1,6 +1,6 @@
 package com.flightontime.flightapi.domain.voo.dto;
 
-public record DetalhesVooPrevisao(
+public record FlightPredictionDetails(
         Boolean isFeriado,
         Double distanciaKm
 ) {
