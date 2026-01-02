@@ -1,6 +1,7 @@
 package com.flightontime.flightapi.infra.exception;
 
 import com.flightontime.flightapi.domain.AutorizacaoException;
+import com.flightontime.flightapi.domain.DataScienceApiOfflineException;
 import com.flightontime.flightapi.domain.ValidacaoException;
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.http.HttpStatus;
@@ -62,6 +63,11 @@ public class TratadorDeErros {
     @ExceptionHandler(Exception.class)
     public ResponseEntity<?> tratarErro500(Exception ex) {
         return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(new ExceptionMensagemDados(ex.getLocalizedMessage()));
+    }
+
+    @ExceptionHandler(DataScienceApiOfflineException.class)
+    public ResponseEntity<ExceptionMensagemDados> handleDataScienceApiOffline(DataScienceApiOfflineException ex) {
+        return ResponseEntity.status(HttpStatus.SERVICE_UNAVAILABLE).body(new ExceptionMensagemDados(ex.getMessage()));
     }
 
     private record ErroValidacaoDados(String campo, String mensagem) {
