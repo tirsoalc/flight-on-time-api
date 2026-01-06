@@ -1,8 +1,8 @@
 package com.flightontime.flightapi.infra.client.datascience;
 
-import com.flightontime.flightapi.domain.voo.dto.FlightPredictionDetails;
-import com.flightontime.flightapi.domain.voo.dto.FlightPredictionResponse;
-import com.flightontime.flightapi.domain.voo.dto.FlightRequest;
+import com.flightontime.flightapi.domain.flight.dto.FlightPredictionDetails;
+import com.flightontime.flightapi.domain.flight.dto.FlightPredictionResponse;
+import com.flightontime.flightapi.domain.flight.dto.FlightRequest;
 import com.flightontime.flightapi.infra.client.datascience.dto.DataScienceApiRequest;
 import com.flightontime.flightapi.infra.client.datascience.dto.DataScienceApiResponse;
 
@@ -12,10 +12,10 @@ public class FlightPredictionMapper {
             FlightRequest flightRequest, String airportOriginName, String airportDestinationName
     ) {
         DataScienceApiRequest apiRequest = new DataScienceApiRequest(
-                flightRequest.companhia(),
+                flightRequest.airline(),
                 airportOriginName,
                 airportDestinationName,
-                flightRequest.dataPartida()
+                flightRequest.departureDate()
         );
         return apiRequest;
     }
