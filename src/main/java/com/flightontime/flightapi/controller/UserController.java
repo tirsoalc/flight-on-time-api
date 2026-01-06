@@ -1,7 +1,7 @@
 package com.flightontime.flightapi.controller;
 
 import com.flightontime.flightapi.domain.user.UserRepository;
-import com.flightontime.flightapi.domain.user.UserDetailsResponse;
+import com.flightontime.flightapi.domain.user.dto.UserDetailsResponse;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;

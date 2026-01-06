@@ -1,4 +1,4 @@
-package com.flightontime.flightapi.domain.user;
+package com.flightontime.flightapi.domain.profile;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 

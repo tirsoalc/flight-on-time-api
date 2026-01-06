@@ -1,5 +1,7 @@
-package com.flightontime.flightapi.domain.user;
+package com.flightontime.flightapi.infra.security;
 
+import com.flightontime.flightapi.domain.user.User;
+import com.flightontime.flightapi.domain.user.UserRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -1,4 +1,4 @@
-package com.flightontime.flightapi.domain.user;
+package com.flightontime.flightapi.domain.user.dto;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.validation.constraints.NotBlank;

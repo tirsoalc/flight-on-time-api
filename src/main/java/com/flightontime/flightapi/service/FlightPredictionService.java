@@ -1,7 +1,7 @@
 package com.flightontime.flightapi.service;
 
-import com.flightontime.flightapi.domain.AirportNotFoundException;
-import com.flightontime.flightapi.domain.DataScienceApiOfflineException;
+import com.flightontime.flightapi.domain.exception.AirportNotFoundException;
+import com.flightontime.flightapi.domain.exception.DataScienceApiOfflineException;
 import com.flightontime.flightapi.domain.flight.dto.FlightPredictionResponse;
 import com.flightontime.flightapi.domain.flight.dto.FlightRequest;
 import com.flightontime.flightapi.infra.client.datascience.DataScienceClientInterface;

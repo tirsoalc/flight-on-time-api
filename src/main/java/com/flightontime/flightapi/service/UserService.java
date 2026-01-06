@@ -1,7 +1,12 @@
 package com.flightontime.flightapi.service;
 
-import com.flightontime.flightapi.domain.ValidationException;
+import com.flightontime.flightapi.domain.exception.ValidationException;
+import com.flightontime.flightapi.domain.profile.Profile;
+import com.flightontime.flightapi.domain.profile.dto.ProfileData;
+import com.flightontime.flightapi.domain.profile.ProfileRepository;
 import com.flightontime.flightapi.domain.user.*;
+import com.flightontime.flightapi.domain.user.dto.UserDetailsResponse;
+import com.flightontime.flightapi.domain.user.dto.UserRegistrationRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;

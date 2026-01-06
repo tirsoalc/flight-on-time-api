@@ -1,6 +1,5 @@
 package com.flightontime.flightapi.infra.security;
 
-import com.flightontime.flightapi.domain.user.UserDetailsImpl;
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.algorithms.Algorithm;
 import com.auth0.jwt.exceptions.JWTCreationException;

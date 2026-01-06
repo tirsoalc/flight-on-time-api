@@ -1,9 +1,9 @@
 package com.flightontime.flightapi.controller;
 
-import com.flightontime.flightapi.domain.user.AuthData;
-import com.flightontime.flightapi.domain.user.UserDetailsImpl;
-import com.flightontime.flightapi.domain.user.UserDetailsResponse;
-import com.flightontime.flightapi.domain.user.UserRegistrationRequest;
+import com.flightontime.flightapi.domain.user.dto.UserLoginRequest;
+import com.flightontime.flightapi.infra.security.UserDetailsImpl;
+import com.flightontime.flightapi.domain.user.dto.UserDetailsResponse;
+import com.flightontime.flightapi.domain.user.dto.UserRegistrationRequest;
 import com.flightontime.flightapi.infra.security.TokenDataResponse;
 import com.flightontime.flightapi.infra.security.TokenService;
 import com.flightontime.flightapi.service.UserService;
@@ -31,7 +31,7 @@ public class AuthController {
     private UserService userService;
 
     @PostMapping("/login")
-    public ResponseEntity<TokenDataResponse> login(@RequestBody @Valid AuthData data){
+    public ResponseEntity<TokenDataResponse> login(@RequestBody @Valid UserLoginRequest data){
         var authenticationToken = new UsernamePasswordAuthenticationToken(data.email(), data.password());
         var authentication = manager.authenticate(authenticationToken);
         var jwtToken = tokenService.generateToken((UserDetailsImpl) authentication.getPrincipal());
