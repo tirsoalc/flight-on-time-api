@@ -1,7 +1,7 @@
 package com.flightontime.flightapi.controller;
 
-import com.flightontime.flightapi.domain.voo.dto.FlightPredictionResponse;
-import com.flightontime.flightapi.domain.voo.dto.FlightRequest;
+import com.flightontime.flightapi.domain.flight.dto.FlightPredictionResponse;
+import com.flightontime.flightapi.domain.flight.dto.FlightRequest;
 import com.flightontime.flightapi.service.FlightPredictionService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;

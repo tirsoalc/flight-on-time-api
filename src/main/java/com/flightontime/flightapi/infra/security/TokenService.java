@@ -1,6 +1,6 @@
 package com.flightontime.flightapi.infra.security;
 
-import com.flightontime.flightapi.domain.usuario.UsuarioDetails;
+import com.flightontime.flightapi.domain.user.UserDetailsImpl;
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.algorithms.Algorithm;
 import com.auth0.jwt.exceptions.JWTCreationException;
@@ -23,30 +23,30 @@ public class TokenService {
     private String secret;
 
     @Value("${spring.application.name}")
-    private String springApplicationName;
+    private String issuer;
 
-    public String gerarToken(UsuarioDetails usuario){
+    public String generateToken(UserDetailsImpl user){
         log.info("TokenService.gerarToken");
         try {
-            var algoritmo = Algorithm.HMAC256(secret);
+            var algorithm = Algorithm.HMAC256(secret);
             return JWT.create()
-                    .withIssuer(springApplicationName)
-                    .withSubject(usuario.getUsername())
-                    .withExpiresAt(dataExpiracao())
-                    .sign(algoritmo);
+                    .withIssuer(issuer)
+                    .withSubject(user.getUsername())
+                    .withExpiresAt(expirationDate())
+                    .sign(algorithm);
         } catch (JWTCreationException exception){
             throw  new RuntimeException("Erro ao gerar token jwt", exception);
         }
     }
 
-    public String getSubject(String tokenJWT){
+    public String getSubject(String jwtToken){
         log.info("TokenService.getSubject");
         try {
-            var algoritmo = Algorithm.HMAC256(secret);
-            return JWT.require(algoritmo)
-                    .withIssuer(springApplicationName)
+            var algorithm = Algorithm.HMAC256(secret);
+            return JWT.require(algorithm)
+                    .withIssuer(issuer)
                     .build()
-                    .verify(tokenJWT)
+                    .verify(jwtToken)
                     .getSubject();
 
         } catch (JWTVerificationException exception){
@@ -54,7 +54,7 @@ public class TokenService {
         }
     }
 
-    private Instant dataExpiracao() {
+    private Instant expirationDate() {
         return LocalDateTime.now().plusHours(12).toInstant(ZoneOffset.of("-03:00"));
     }
 }

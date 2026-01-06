@@ -1,8 +1,8 @@
 package com.flightontime.flightapi.controller;
 
-import com.flightontime.flightapi.domain.usuario.AutenticacaoDados;
-import com.flightontime.flightapi.domain.usuario.UsuarioDetails;
-import com.flightontime.flightapi.infra.security.DadosTokenJWT;
+import com.flightontime.flightapi.domain.user.AuthData;
+import com.flightontime.flightapi.domain.user.UserDetailsImpl;
+import com.flightontime.flightapi.infra.security.TokenDataResponse;
 import com.flightontime.flightapi.infra.security.TokenService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/login")
-public class AutenticacaoController {
+public class AuthController {
 
     @Autowired
     private AuthenticationManager manager;
@@ -25,10 +25,10 @@ public class AutenticacaoController {
     private TokenService tokenService;
 
     @PostMapping
-    public ResponseEntity<DadosTokenJWT> efetuarLogin(@RequestBody @Valid AutenticacaoDados dados){
-        var authenticationToken = new UsernamePasswordAuthenticationToken(dados.email(), dados.senha());
+    public ResponseEntity<TokenDataResponse> login(@RequestBody @Valid AuthData data){
+        var authenticationToken = new UsernamePasswordAuthenticationToken(data.email(), data.password());
         var authentication = manager.authenticate(authenticationToken);
-        var tokenJWT = tokenService.gerarToken((UsuarioDetails) authentication.getPrincipal());
-        return ResponseEntity.ok(new DadosTokenJWT(tokenJWT));
+        var jwtToken = tokenService.generateToken((UserDetailsImpl) authentication.getPrincipal());
+        return ResponseEntity.ok(new TokenDataResponse(jwtToken));
     }
 }

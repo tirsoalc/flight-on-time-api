@@ -1,4 +1,4 @@
-package com.flightontime.flightapi.domain.usuario;
+package com.flightontime.flightapi.domain.user;
 
 import lombok.Getter;
 import org.springframework.security.core.GrantedAuthority;
@@ -10,32 +10,30 @@ import java.util.stream.Collectors;
 
 
 @Getter
-public class UsuarioDetails implements UserDetails {
+public class UserDetailsImpl implements UserDetails {
 
-    private Usuario usuario;
+    private User user;
 
-    public UsuarioDetails(Usuario usuario) {
-        this.usuario = usuario;
+    public UserDetailsImpl(User user) {
+        this.user = user;
     }
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
 
-        return usuario.getPerfis()
+        return user.getProfiles()
                 .stream()
-                .map(role -> new SimpleGrantedAuthority(role.getNome()))
+                .map(role -> new SimpleGrantedAuthority(role.getName()))
                 .collect(Collectors.toList());
 
     }
 
     @Override
-    public String getPassword() {
-        return usuario.getSenha();
-    }
+    public String getPassword() { return user.getPassword(); }
 
     @Override
     public String getUsername() {
-        return usuario.getEmail();
+        return user.getEmail();
     }
 
     @Override
@@ -55,7 +53,7 @@ public class UsuarioDetails implements UserDetails {
 
     @Override
     public boolean isEnabled() {
-        return usuario.isAtivo();
+        return user.isActive();
     }
 
 }

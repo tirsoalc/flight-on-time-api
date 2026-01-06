@@ -1,4 +1,4 @@
-package com.flightontime.flightapi.domain.usuario;
+package com.flightontime.flightapi.domain.user;
 
 import jakarta.persistence.*;
 import lombok.Getter;
@@ -10,16 +10,17 @@ import java.util.Set;
 @Getter
 @Entity
 @Table(name = "perfis")
-public class Perfil {
+public class Profile {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(nullable = false, length = 100)
-    private String nome;
+    @Column(name = "nome", nullable = false, length = 100)
+    private String name;
 
-    @ManyToMany(mappedBy = "perfis")
-    private Set<Usuario> usuarios;
+    @ManyToMany(mappedBy = "profiles")
+    private Set<User> users;
+
 
 }
