@@ -1,9 +1,8 @@
 
 package com.flightontime.flightapi.infra.security;
 
-import com.flightontime.flightapi.domain.user.UserDetailsImpl;
 import com.flightontime.flightapi.domain.user.UserRepository;
-import com.flightontime.flightapi.domain.user.UserDetailsResponse;
+import com.flightontime.flightapi.domain.user.dto.UserDetailsResponse;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;

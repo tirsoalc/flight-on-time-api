@@ -1,5 +1,6 @@
 package com.flightontime.flightapi.domain.user;
 
+import com.flightontime.flightapi.domain.profile.Profile;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;

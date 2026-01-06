@@ -1,9 +1,9 @@
 package com.flightontime.flightapi.infra.exception;
 
-import com.flightontime.flightapi.domain.AirportNotFoundException;
-import com.flightontime.flightapi.domain.AuthorizationException;
-import com.flightontime.flightapi.domain.DataScienceApiOfflineException;
-import com.flightontime.flightapi.domain.ValidationException;
+import com.flightontime.flightapi.domain.exception.AirportNotFoundException;
+import com.flightontime.flightapi.domain.exception.AuthorizationException;
+import com.flightontime.flightapi.domain.exception.DataScienceApiOfflineException;
+import com.flightontime.flightapi.domain.exception.ValidationException;
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

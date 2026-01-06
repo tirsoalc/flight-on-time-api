@@ -1,5 +1,6 @@
-package com.flightontime.flightapi.domain.user;
+package com.flightontime.flightapi.infra.security;
 
+import com.flightontime.flightapi.domain.user.User;
 import lombok.Getter;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;

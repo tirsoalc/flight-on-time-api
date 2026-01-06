@@ -1,6 +1,8 @@
-package com.flightontime.flightapi.domain.user;
+package com.flightontime.flightapi.domain.user.dto;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.flightontime.flightapi.domain.profile.dto.ProfileData;
+import com.flightontime.flightapi.domain.user.User;
 
 import java.util.Set;
 import java.util.stream.Collectors;

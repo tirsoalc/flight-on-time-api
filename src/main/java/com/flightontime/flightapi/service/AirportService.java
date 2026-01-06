@@ -1,6 +1,6 @@
 package com.flightontime.flightapi.service;
 
-import com.flightontime.flightapi.domain.AirportNotFoundException;
+import com.flightontime.flightapi.domain.exception.AirportNotFoundException;
 import com.flightontime.flightapi.domain.airport.AirportRepository;
 import com.flightontime.flightapi.domain.airport.dto.AirportResponse;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -1,6 +1,7 @@
-package com.flightontime.flightapi.domain.user;
+package com.flightontime.flightapi.domain.user.dto;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.flightontime.flightapi.domain.user.User;
 
 public record UserDataList(
 
