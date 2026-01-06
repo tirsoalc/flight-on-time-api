@@ -1,4 +1,4 @@
-package com.flightontime.flightapi.domain.usuario;
+package com.flightontime.flightapi.domain.user;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -9,17 +9,17 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 @Service
-public class AutenticacaoService implements UserDetailsService {
+public class AuthService implements UserDetailsService {
 
-    private static final Logger log = LoggerFactory.getLogger(AutenticacaoService.class);
+    private static final Logger log = LoggerFactory.getLogger(AuthService.class);
 
     @Autowired
-    private UsuarioRepository userRepository;
+    private UserRepository userRepository;
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         log.info("loadUserByUsername");
-        Usuario usuario = userRepository.findByEmail(username).orElseThrow(() -> new UsernameNotFoundException("Usuário não encontrado."));
-        return new UsuarioDetails(usuario);
+        User user = userRepository.findByEmail(username).orElseThrow(() -> new UsernameNotFoundException("Usuário não encontrado."));
+        return new UserDetailsImpl(user);
     }
 }

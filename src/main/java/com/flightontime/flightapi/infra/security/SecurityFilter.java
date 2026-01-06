@@ -1,9 +1,9 @@
 
 package com.flightontime.flightapi.infra.security;
 
-import com.flightontime.flightapi.domain.usuario.UsuarioDetails;
-import com.flightontime.flightapi.domain.usuario.UsuarioRepository;
-import com.flightontime.flightapi.domain.usuario.UsuarioDetalheDados;
+import com.flightontime.flightapi.domain.user.UserDetailsImpl;
+import com.flightontime.flightapi.domain.user.UserRepository;
+import com.flightontime.flightapi.domain.user.UserDetailsResponse;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
@@ -28,7 +28,7 @@ public class SecurityFilter extends OncePerRequestFilter {
     private TokenService tokenService;
 
     @Autowired
-    private UsuarioRepository repository;
+    private UserRepository repository;
 
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
@@ -38,19 +38,19 @@ public class SecurityFilter extends OncePerRequestFilter {
                 !Arrays.asList(SecurityConfigurations.ENDPOINTS_POST_NO_AUTH).contains(request.getRequestURI())) {
 
             log.info("SecurityFilter.doFilterInternal: Verificando token");
-            var tokenJWT = recuperarToken(request);
+            var jwtToken = recoverToken(request);
 
-            if (tokenJWT != null) {
+            if (jwtToken != null) {
                 log.info("Token presente");
-                var subject = tokenService.getSubject(tokenJWT);
-                var usuario = repository.findByEmailAndAtivoTrue(subject);
-                UsuarioDetails userDetails = new UsuarioDetails(usuario.get());
+                var subject = tokenService.getSubject(jwtToken);
+                var user = repository.findByEmailAndActiveTrue(subject);
+                UserDetailsImpl userDetails = new UserDetailsImpl(user.get());
                 var authentication = new UsernamePasswordAuthenticationToken(userDetails, null, userDetails.getAuthorities());
 
                 SecurityContextHolder.getContext().setAuthentication(authentication);
 
-                UsuarioDetalheDados usuarioResponseDTO = new UsuarioDetalheDados(usuario.get());
-                log.info("Token verificado: {} {}", usuarioResponseDTO.email(), usuarioResponseDTO.perfis().stream().map(p -> p.nome()).toList());
+                UserDetailsResponse usuarioResponseDTO = new UserDetailsResponse(user.get());
+                log.info("Token verificado: {} {}", usuarioResponseDTO.email(), usuarioResponseDTO.profiles().stream().map(p -> p.name()).toList());
 
             }else{
                 log.info("Token ausente");
@@ -63,7 +63,7 @@ public class SecurityFilter extends OncePerRequestFilter {
         filterChain.doFilter(request, response);
     }
 
-    private String recuperarToken(HttpServletRequest request) {
+    private String recoverToken(HttpServletRequest request) {
         var authorizationHeader = request.getHeader("Authorization");
         if (authorizationHeader != null){
             return authorizationHeader.replace("Bearer ", "");

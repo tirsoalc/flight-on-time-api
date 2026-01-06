@@ -27,9 +27,9 @@ public class SecurityConfigurations {
     private SecurityFilter securityFilter;
 
     public static final String [] ENDPOINTS_POST_NO_AUTH = {"/login", "/predict"};
-    public static final String [] ENDPOINTS_GET_NO_AUTH = {"/", "/check/**", "/h2-console/**", "/generate_204", "/actuator/**", "/gerar-senha", "/airports"};
+    public static final String [] ENDPOINTS_GET_NO_AUTH = {"/", "/check/**", "/h2-console/**", "/generate_204", "/actuator/**", "/gerar-password", "/airports"};
     public static final String [] ENDPOINTS_SWAGGER = {"/v3/api-docs/**", "/swagger-ui.html", "/swagger-ui/**"};
-    public static final String [] ENDPOINTS_ADMIN = {"/admin", "/usuarios/**"};
+    public static final String [] ENDPOINTS_ADMIN = {"/admin", "/users/**"};
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {

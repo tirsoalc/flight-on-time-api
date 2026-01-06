@@ -1,4 +1,4 @@
-package com.flightontime.flightapi.domain.usuario;
+package com.flightontime.flightapi.domain.user;
 
 import jakarta.persistence.*;
 import lombok.Getter;
@@ -11,23 +11,23 @@ import java.util.Set;
 @Getter
 @Entity
 @Table(name = "usuarios")
-public class Usuario {
+public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(nullable = false, length = 100)
-    private String nome;
+    @Column(name = "nome", nullable = false, length = 100)
+    private String name;
 
     @Column(nullable = false, unique = true, length = 100)
     private String email;
 
-    @Column(nullable = false, length = 255)
-    private String senha;
+    @Column(name = "senha", nullable = false, length = 255)
+    private String password;
 
-    @Column(nullable = false)
-    private boolean ativo = true;
+    @Column(name = "ativo", nullable = false)
+    private boolean active = true;
 
     @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinTable(
@@ -35,6 +35,6 @@ public class Usuario {
             joinColumns = @JoinColumn(name = "usuario_id"),
             inverseJoinColumns = @JoinColumn(name = "perfil_id")
     )
-    private Set<Perfil> perfis = new HashSet<>();
+    private Set<Profile> profiles = new HashSet<>();
 
 }

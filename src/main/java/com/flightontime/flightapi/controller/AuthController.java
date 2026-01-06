@@ -1,7 +1,7 @@
 package com.flightontime.flightapi.controller;
 
-import com.flightontime.flightapi.domain.usuario.AuthData;
-import com.flightontime.flightapi.domain.usuario.UserDetailsImpl;
+import com.flightontime.flightapi.domain.user.AuthData;
+import com.flightontime.flightapi.domain.user.UserDetailsImpl;
 import com.flightontime.flightapi.infra.security.TokenDataResponse;
 import com.flightontime.flightapi.infra.security.TokenService;
 import jakarta.validation.Valid;
