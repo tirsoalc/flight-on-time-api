@@ -2,8 +2,11 @@ package com.flightontime.flightapi.controller;
 
 import com.flightontime.flightapi.domain.user.AuthData;
 import com.flightontime.flightapi.domain.user.UserDetailsImpl;
+import com.flightontime.flightapi.domain.user.UserDetailsResponse;
+import com.flightontime.flightapi.domain.user.UserRegistrationRequest;
 import com.flightontime.flightapi.infra.security.TokenDataResponse;
 import com.flightontime.flightapi.infra.security.TokenService;
+import com.flightontime.flightapi.service.UserService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -15,7 +18,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/login")
+@RequestMapping("/auth")
 public class AuthController {
 
     @Autowired
@@ -24,11 +27,20 @@ public class AuthController {
     @Autowired
     private TokenService tokenService;
 
-    @PostMapping
+    @Autowired
+    private UserService userService;
+
+    @PostMapping("/login")
     public ResponseEntity<TokenDataResponse> login(@RequestBody @Valid AuthData data){
         var authenticationToken = new UsernamePasswordAuthenticationToken(data.email(), data.password());
         var authentication = manager.authenticate(authenticationToken);
         var jwtToken = tokenService.generateToken((UserDetailsImpl) authentication.getPrincipal());
         return ResponseEntity.ok(new TokenDataResponse(jwtToken));
+    }
+
+    @PostMapping("/create-user")
+    public ResponseEntity<UserDetailsResponse> createUser(@RequestBody @Valid UserRegistrationRequest userRegistrationRequest) {
+        UserDetailsResponse response = userService.createUser(userRegistrationRequest);
+        return ResponseEntity.ok(response);
     }
 }
